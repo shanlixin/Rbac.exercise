@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uxSkzR4l31jKgljlDw6WriJZ7FKfaFyMQ4klgmfWiBdP3saFZEe5gkP5CkenRB1Y7wNMKMMvV8qNrg3nj+OCxw==",
+  "dgSpecHash": "S4p/EG7BuRmEv3RfeH6nnJPGr/ruhEufgut6RP23lZBxXYb7UvMrZU2QGrFmIZb/hGo02Dr3gW6u2ZcKYvZRmg==",
   "success": true,
-  "projectFilePath": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj",
+  "projectFilePath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

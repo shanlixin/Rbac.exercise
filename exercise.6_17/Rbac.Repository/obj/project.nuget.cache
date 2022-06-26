@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hy76UdgyGkF2RTr2NfF+wjMMLGTr+5hvfEbd/C4J2aLTqneikwmQI7f39g0TgiWmgEgMJU3aqyabj3YlEqP3Pw==",
+  "dgSpecHash": "MgNddM+HkKxqwO4cLqrxJZ57DfntC2aJRTiq9AmvRkCC9/1pUQTLPo0JkaQUWD94t9ot3+T296bJ0tqd0PMmZw==",
   "success": true,
-  "projectFilePath": "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj",
+  "projectFilePath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

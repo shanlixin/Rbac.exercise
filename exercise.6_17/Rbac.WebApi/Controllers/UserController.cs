@@ -4,7 +4,7 @@ using Rbac.Application;
 
 namespace Rbac.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -24,6 +24,17 @@ namespace Rbac.WebApi.Controllers
         public ResaultDto AddUserInfo(UserDto user)
         {
             return UserService.AddUserInfo(user);
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public TokenDto Login(LoginDto user)
+        {
+            return UserService.Login(user);
         }
     }
 }

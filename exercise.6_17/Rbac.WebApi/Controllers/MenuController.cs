@@ -12,6 +12,7 @@ namespace Rbac.WebApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
+    [Authorize]
     public class MenuController : ControllerBase
     {
         public MenuController(IMenuService menu)
@@ -81,9 +82,9 @@ namespace Rbac.WebApi.Controllers
         /// <param name="menu"></param>
         /// <returns></returns>
         [HttpPost]
-        public bool Upd(MenuAddDto menu)
+        public bool UpdMenu(Menu menu)
         {
-            return Menu.UpDate(menu);
+            return Menu.UpdMenu(menu);
         }
     }
 }

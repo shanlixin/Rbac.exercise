@@ -11,5 +11,6 @@ namespace Rbac.Application
     public interface IUserService: IBaseService<User,UserDto>
     {
         ResaultDto AddUserInfo(UserDto user);
+        TokenDto Login(LoginDto user);
     }
 }

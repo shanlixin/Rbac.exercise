@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\专高六\\传\\6.17练习\\Rbac.WebApi\\Rbac.WebApi.csproj": {}
+    "D:\\专高六\\传\\exercise.6_17\\Rbac.WebApi\\Rbac.WebApi.csproj": {}
   },
   "projects": {
-    "D:\\专高六\\传\\6.17练习\\Rbac.Application\\Rbac.Application.csproj": {
+    "D:\\专高六\\传\\exercise.6_17\\Rbac.Application\\Rbac.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\专高六\\传\\6.17练习\\Rbac.Application\\Rbac.Application.csproj",
+        "projectUniqueName": "D:\\专高六\\传\\exercise.6_17\\Rbac.Application\\Rbac.Application.csproj",
         "projectName": "Rbac.Application",
-        "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Application\\Rbac.Application.csproj",
+        "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Application\\Rbac.Application.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\专高六\\传\\6.17练习\\Rbac.Application\\obj\\",
+        "outputPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -34,8 +34,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj": {
-                "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj"
+              "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj": {
+                "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj"
               }
             }
           }
@@ -53,6 +53,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
+            },
+            "IdentityModel": {
+              "target": "Package",
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -74,14 +78,14 @@
         }
       }
     },
-    "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj": {
+    "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj",
+        "projectUniqueName": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj",
         "projectName": "Rbac.Entity",
-        "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj",
+        "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\obj\\",
+        "outputPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -146,14 +150,14 @@
         }
       }
     },
-    "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj": {
+    "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj",
+        "projectUniqueName": "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj",
         "projectName": "Rbac.Repository",
-        "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj",
+        "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\obj\\",
+        "outputPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -176,8 +180,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj": {
-                "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj"
+              "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj": {
+                "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj"
               }
             }
           }
@@ -210,14 +214,14 @@
         }
       }
     },
-    "D:\\专高六\\传\\6.17练习\\Rbac.WebApi\\Rbac.WebApi.csproj": {
+    "D:\\专高六\\传\\exercise.6_17\\Rbac.WebApi\\Rbac.WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\专高六\\传\\6.17练习\\Rbac.WebApi\\Rbac.WebApi.csproj",
+        "projectUniqueName": "D:\\专高六\\传\\exercise.6_17\\Rbac.WebApi\\Rbac.WebApi.csproj",
         "projectName": "Rbac.WebApi",
-        "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.WebApi\\Rbac.WebApi.csproj",
+        "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.WebApi\\Rbac.WebApi.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\专高六\\传\\6.17练习\\Rbac.WebApi\\obj\\",
+        "outputPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -240,14 +244,14 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "D:\\专高六\\传\\6.17练习\\Rbac.Application\\Rbac.Application.csproj": {
-                "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Application\\Rbac.Application.csproj"
+              "D:\\专高六\\传\\exercise.6_17\\Rbac.Application\\Rbac.Application.csproj": {
+                "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Application\\Rbac.Application.csproj"
               },
-              "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj": {
-                "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj"
+              "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj": {
+                "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj"
               },
-              "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj": {
-                "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Repository\\Rbac.Repository.csproj"
+              "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj": {
+                "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Repository\\Rbac.Repository.csproj"
               }
             }
           }
@@ -279,6 +283,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "Swashbuckle.AspNetCore.Filters": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             }
           },
           "imports": [

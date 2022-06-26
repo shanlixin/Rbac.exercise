@@ -16,6 +16,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Reflection;
 using Rbac.Repository;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Rbac.WebApi
 {
@@ -33,11 +37,56 @@ namespace Rbac.WebApi
         {
             services.AddAutoMapper(Assembly.Load("Rbac.Application"));
 
-
             services.AddControllers();
-            services.AddSwaggerGen(c =>
+
+            services.AddAuthentication(option =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rbac.WebApi", Version = "v1" });
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(
+            option =>
+            {
+                //Token验证参数
+                option.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //是否验证发行人
+                    ValidateIssuer = true,
+                    ValidIssuer = Configuration["JwtConfig:Issuer"],//发行人
+
+                    //是否验证受众人
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["JwtConfig:Audience"],//受众人
+
+                    //是否验证密钥
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtConfig:key"])),
+
+                    ValidateLifetime = true, //验证生命周期
+
+                    RequireExpirationTime = true, //过期时间
+
+                    ClockSkew = TimeSpan.Zero   //平滑过期偏移时间
+                };
+            }
+);
+
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = "Rbac.WebApi", Version = "v1" });
+
+                //开启权限小锁
+                options.OperationFilter<AddResponseHeadersFilter>();
+                options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                options.OperationFilter<SecurityRequirementsOperationFilter>();
+
+                //在header中添加token，传递到后台
+                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "JWT授权(数据将在请求头中进行传递)直接在下面框中输入Bearer {token}(注意两者之间是一个空格) \"",
+                    Name = "Authorization",//jwt默认的参数名称
+                    In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
+                    Type = SecuritySchemeType.ApiKey
+                });
             });
 
             //上下文
@@ -78,7 +127,7 @@ namespace Rbac.WebApi
             app.UseCors();
 
             //认证中间件
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             //授权中间件
             app.UseAuthorization();

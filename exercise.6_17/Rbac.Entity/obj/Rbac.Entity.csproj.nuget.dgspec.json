@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj": {}
+    "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj": {}
   },
   "projects": {
-    "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj": {
+    "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj",
+        "projectUniqueName": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj",
         "projectName": "Rbac.Entity",
-        "projectPath": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\Rbac.Entity.csproj",
+        "projectPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\Rbac.Entity.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "D:\\专高六\\传\\6.17练习\\Rbac.Entity\\obj\\",
+        "outputPath": "D:\\专高六\\传\\exercise.6_17\\Rbac.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

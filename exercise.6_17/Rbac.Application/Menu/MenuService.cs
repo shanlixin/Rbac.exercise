@@ -93,5 +93,21 @@ namespace Rbac.Application
             return MenuRepository.Add(menu);
         }
 
+        public bool UpdMenu(Menu menu)
+        {
+            if (menu.ParentId == 0)
+            {
+                var list = MenuRepository.GetByWhere(menu.MenuId);
+                menu.CreateTime = list.CreateTime;
+                menu.ParentId = list.ParentId;
+                return MenuRepository.Upd(menu);
+            }
+            else
+            {
+                return MenuRepository.Upd(menu);
+            }
+
+        }
+
     }
 }
