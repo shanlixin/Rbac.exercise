@@ -69,7 +69,7 @@ namespace Rbac.Repository
         /// <returns></returns>
         public bool Upd(T t)
         {
-            DbContext.Entry<T>(t).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            DbContext.Entry(t).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             return DbContext.SaveChanges() > 0;
         }
 

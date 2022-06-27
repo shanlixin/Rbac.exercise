@@ -73,7 +73,7 @@ namespace Rbac.Application
             {
                 return new TokenDto { Code = false, Msg = "该用户名不存在" };
             }
-            if (list.Password.ToLower() != Md5(user.Password.Trim().ToLower()))
+            if (list.Password.ToLower() != Md5(user.PassWord.Trim().ToLower()))
             {
                 return new TokenDto { Code = false, Msg = "密码输入有误" };
             }

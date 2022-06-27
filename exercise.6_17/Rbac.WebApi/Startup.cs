@@ -103,6 +103,8 @@ namespace Rbac.WebApi
                 });
             });
 
+            services.AddScoped<ICodeService, CodeService>();
+
             services.AddScoped<IMenuRepository, MenuRepository>();
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IUserRepository, UserRepository>();
