@@ -17,4 +17,9 @@ namespace Rbac.Application
         /// </summary>
         public int ParentId { get; set; }
     }
+
+    public class MenuShowDto : MenuAddDto
+    {
+
+    }
 }

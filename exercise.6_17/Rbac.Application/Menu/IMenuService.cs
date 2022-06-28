@@ -10,5 +10,6 @@ namespace Rbac.Application
         List<MenuListDto> GetList();
         bool Create(Menu menu);
         bool UpdMenu(Menu menu);
+        List<MenuShowDto> GetMenuShow();
     }
 }

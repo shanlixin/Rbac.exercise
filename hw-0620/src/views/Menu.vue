@@ -83,34 +83,38 @@ export default {
       this.getmenu();
     },
     handleDelete(index, row) {
-      this.$axios.get("Menu/GetMenuById?id=" + row.menuId).then((d) => {
-        if (d.data != "") {
-          this.$message.error("该菜单存在子节点，不能删除");
-          return;
-        } else {
-          this.$confirm("确定要删除该菜单吗?", "提示", {
-            confirmButtonText: "确定",
-            cancelButtonText: "取消",
-            type: "warning",
-          })
-            .then(() => {
-              this.$axios.delete("Menu/DelMenu?id=" + row.menuId).then((d) => {
-                if (d.data) {
-                  this.$message.success("删除成功");
-                  this.getmenu();
-                } else {
-                  this.$message.error("删除失败");
-                }
-              });
-            })
-            .catch(() => {
-              this.$message({
-                type: "info",
-                message: "已取消删除",
-              });
+      if (row.children.length != 0) {
+        this.$message.error("该菜单存在子节点，不能删除");
+        return;
+      } else {
+        this.$confirm("确定要删除该菜单吗?", "提示", {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning",
+        })
+          .then(() => {
+            this.$axios.delete("Menu/DelMenu?id=" + row.menuId).then((d) => {
+              if (d.data) {
+                this.$message({
+                  message: "删除成功",
+                  type: "success",
+                  duration: 1000,
+                  onClose: (m) => {
+                    this.getmenu();
+                  },
+                });
+              } else {
+                this.$message.error("删除失败");
+              }
             });
-        }
-      });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "已取消删除",
+            });
+          });
+      }
     },
   },
   created() {

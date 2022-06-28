@@ -3,52 +3,15 @@
     <el-container style="height: 100%; border: 1px solid #eee">
       <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-menu
-          :default-openeds="['1', '3']"
-          :router="true"
           style="height: 100%"
+          :collapse="isCollapse"
+          :default-active="activeIndex"
+          :unique-opened="true"
+          router
+          ref="elMenu"
+          @select="menuSelect"
         >
-          <el-submenu index="1">
-            <template slot="title"
-              ><i class="el-icon-message"></i>菜单管理</template
-            >
-            <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="/menu">菜单显示</el-menu-item>
-              <el-menu-item index="1-2">选项2</el-menu-item>
-            </el-menu-item-group>
-          </el-submenu>
-          <el-submenu index="2">
-            <template slot="title"><i class="el-icon-menu"></i>导航二</template>
-            <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="2-1">选项1</el-menu-item>
-              <el-menu-item index="2-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="2-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="2-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="2-4-1">选项4-1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
-          <el-submenu index="3">
-            <template slot="title"
-              ><i class="el-icon-setting"></i>导航三</template
-            >
-            <el-menu-item-group>
-              <template slot="title">分组一</template>
-              <el-menu-item index="3-1">选项1</el-menu-item>
-              <el-menu-item index="3-2">选项2</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="分组2">
-              <el-menu-item index="3-3">选项3</el-menu-item>
-            </el-menu-item-group>
-            <el-submenu index="3-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="3-4-1">选项4-1</el-menu-item>
-            </el-submenu>
-          </el-submenu>
+          <mymenu :data="menuArr" />
         </el-menu>
       </el-aside>
 
@@ -85,3 +48,34 @@
 }
 </style>
 
+<script>
+import mymenu from "../views/MenuList.vue";
+export default {
+  components: {
+    mymenu,
+  },
+  data() {
+    return {
+      isCollapse: false,
+      activeIndex: this.$route.path,
+      tableData: [],
+      // 然后再通过权限管理页面，去添加或修改这个树结构，这样的话，前端就会呈现出来了
+      menuArr: [],
+    };
+  },
+  mounted() {
+    console.log(this.$route);
+    this.getmenu();
+  },
+  methods: {
+    menuSelect(index) {
+      this.activeIndex = index;
+    },
+    getmenu() {
+      this.$axios.get("Menu/GetMenuAll").then((d) => {
+        this.menuArr = d.data;
+      });
+    },
+  },
+};
+</script>

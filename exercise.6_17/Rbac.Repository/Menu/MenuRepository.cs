@@ -12,6 +12,26 @@ namespace Rbac.Repository
             DbContext = db;
         }
 
-
+        public bool UpdMenu(Menu menu)
+        {
+            var list = GetByWhere(menu.MenuId);
+            if (menu.ParentId == 0)
+            {
+                list.MenuId = menu.MenuId;
+                list.MenuName = menu.MenuName;
+                list.LinkUrl = menu.LinkUrl;
+                list.DelState = menu.DelState;
+                return DbContext.SaveChanges() > 0;
+            }
+            else
+            {
+                list.MenuId = menu.MenuId;
+                list.ParentId = menu.ParentId;
+                list.MenuName = menu.MenuName;
+                list.LinkUrl = menu.LinkUrl;
+                list.DelState = menu.DelState;
+                return DbContext.SaveChanges() > 0;
+            }
+        }
     }
 }

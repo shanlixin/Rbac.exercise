@@ -20,11 +20,18 @@
         <el-form-item label="密码" prop="password">
           <el-input v-model="ruleForm.password"></el-input>
         </el-form-item>
+        <el-form-item label="验证码" prop="password">
+          <el-input
+            v-model="ruleForm.checkcode"
+            style="width: 140px"
+          ></el-input>
+          <img :src="imageUrl" @click="acquireVerification" />
+        </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit('ruleForm')"
+          <el-button type="primary" @click="submitForm('ruleForm')"
             >登录</el-button
           >
-          <el-button>取消</el-button>
+          <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -35,6 +42,7 @@
 export default {
   data() {
     return {
+      imageUrl: "",
       ruleForm: {
         username: "",
         password: "",
@@ -45,6 +53,9 @@ export default {
           { required: true, message: "请输入用户名", trigger: "blur" },
         ],
         password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+        checkcode: [
+          { required: true, message: "请输入验证码", trigger: "blur" },
+        ],
       },
     };
   },
@@ -53,6 +64,7 @@ export default {
       this.$axios.post("User/Login", this.ruleForm).then((d) => {
         if (d.data.token != null) {
           this.$message.success("登录成功");
+          sessionStorage.setItem("username", this.ruleForm.username);
           localStorage.setItem("token", d.data.token);
           this.$router.push("/home");
         }
@@ -79,6 +91,18 @@ export default {
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
+    acquireVerification() {
+      // {responseType: 'blob'} ，不加这个返回的就是乱码
+      //直接获取
+      this.$axios.get("Code", { responseType: "blob" }).then((response) => {
+        console.log(response.data);
+        this.imageUrl = window.URL.createObjectURL(response.data);
+        console.log(this.imageUrl);
+      });
+    },
+  },
+  mounted() {
+    this.acquireVerification();
   },
 };
 </script>

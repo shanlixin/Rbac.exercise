@@ -26,10 +26,25 @@ const routes = [
       { path: '/menu', component: () => import('../views/Menu.vue') }
     ]
   },
+  {
+    path: '/menulist',
+    name: 'menulist',
+    component: () => import('../views/MenuList.vue'),
+  },
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((a, b, c) => {
+  let username = sessionStorage.getItem("username") ?? ""
+  if (a.name != "登录" && username.length == 0) {
+    c({ name: "登录" })
+  }
+  else {
+    c()
+  }
 })
 
 export default router

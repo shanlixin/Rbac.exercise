@@ -61,6 +61,7 @@ namespace Rbac.Application
             return string.Join("", MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(val)).Select(x => x.ToString("x2")));
         }
 
+        //string code=Request.Cookies.TryGetValue("userFavorite", out string value);
         /// <summary>
         /// 登录
         /// </summary>
@@ -68,6 +69,7 @@ namespace Rbac.Application
         /// <returns></returns>
         public TokenDto Login(LoginDto user)
         {
+            
             var list = UserRepository.GetByWhere(m => m.UserName == user.UserName.Trim());
             if (list==null)
             {

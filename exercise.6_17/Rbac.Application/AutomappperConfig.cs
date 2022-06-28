@@ -14,6 +14,7 @@ namespace Rbac.Application
         {
             CreateMap<MenuAddDto, Menu>().ReverseMap();
             CreateMap<UserDto, User>().ReverseMap();
+            CreateMap<MenuShowDto, Menu>().ReverseMap();
         }
     }
 }

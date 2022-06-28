@@ -86,5 +86,16 @@ namespace Rbac.WebApi.Controllers
         {
             return Menu.UpdMenu(menu);
         }
+
+        /// <summary>
+        /// 菜单显示
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public List<MenuShowDto> GetMenuShow()
+        {
+            return Menu.GetMenuShow();
+        }
     }
 }
