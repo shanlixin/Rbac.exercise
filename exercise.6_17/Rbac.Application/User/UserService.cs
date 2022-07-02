@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using IdentityModel;
+using Microsoft.AspNetCore.Http;
 
 namespace Rbac.Application
 {
@@ -19,12 +20,14 @@ namespace Rbac.Application
     {
         private readonly IMapper mapper;
         private readonly IConfiguration configuration;
+        private readonly IHttpContextAccessor accessor;
 
-        public UserService(IUserRepository userRepository,IMapper mapper, IConfiguration configuration) : base(userRepository,mapper)
+        public UserService(IUserRepository userRepository,IMapper mapper, IConfiguration configuration, IHttpContextAccessor accessor) : base(userRepository,mapper)
         {
             UserRepository = userRepository;
             this.mapper = mapper;
             this.configuration = configuration;
+            this.accessor = accessor;
         }
 
         public IUserRepository UserRepository { get; }
@@ -69,7 +72,11 @@ namespace Rbac.Application
         /// <returns></returns>
         public TokenDto Login(LoginDto user)
         {
-            
+            var code=accessor.HttpContext.Request.Cookies["Code"];
+            if (user.CheckCode != code.Trim().ToLower())
+            {
+                return new TokenDto { Code = false, Msg = "验证码错误" };
+            }
             var list = UserRepository.GetByWhere(m => m.UserName == user.UserName.Trim());
             if (list==null)
             {
@@ -111,6 +118,14 @@ namespace Rbac.Application
             string jwt = handler.WriteToken(token);
 
             return new TokenDto { Code = true, Msg = "登录成功", Token = jwt };
+        }
+
+
+         public Tuple<List<UserShowDto>,int> UserPage(int pageindex=1,int pagesize=10)
+        {
+            var list =mapper.Map<List<UserShowDto>>(UserRepository.GetQueryable()).OrderBy(m => m.UserId).Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
+            var TotalCount = UserRepository.GetQueryable().Count();
+            return new Tuple<List<UserShowDto>, int>(list, TotalCount);
         }
     }
 }

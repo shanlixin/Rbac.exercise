@@ -29,7 +29,7 @@
       </el-table-column>
     </el-table>
     <el-dialog title="添加菜单" :visible.sync="addmenutable" width="30%">
-      <Add @addtable="addtable" />
+      <Add @addtable="addtable" :key="new Date().getTime()" />
     </el-dialog>
     <el-dialog title="修改菜单" :visible.sync="updmenutable" width="30%">
       <Upd @updtable="updtable" :updfrom="form" />

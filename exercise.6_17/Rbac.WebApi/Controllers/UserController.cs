@@ -36,5 +36,17 @@ namespace Rbac.WebApi.Controllers
         {
             return UserService.Login(user);
         }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="pageindex"></param>
+        /// <param name="pagesize"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult UserPage(int pageindex = 1, int pagesize = 10)
+        {
+            return Ok(UserService.UserPage(pageindex,pagesize));
+        }
     }
 }

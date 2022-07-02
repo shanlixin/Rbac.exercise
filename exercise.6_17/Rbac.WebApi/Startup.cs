@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Filters;
+using Microsoft.AspNetCore.Http;
 
 namespace Rbac.WebApi
 {
@@ -97,9 +98,9 @@ namespace Rbac.WebApi
             //øÁ”Ú
             services.AddCors(opt =>
             {
-                opt.AddDefaultPolicy(opt =>
+                opt.AddDefaultPolicy(option =>
                 {
-                    opt.AllowAnyMethod().AllowAnyOrigin().AllowAnyHeader();
+                    option.WithOrigins("http://localhost:8082").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
                 });
             });
 
@@ -109,6 +110,12 @@ namespace Rbac.WebApi
             services.AddScoped<IMenuService, MenuService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
+            
+
+            services.AddHttpContextAccessor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -121,7 +128,10 @@ namespace Rbac.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rbac.WebApi v1"));
             }
 
-            app.UseHttpsRedirection();
+            // π”√session
+            //app.UseSession();
+
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -12,5 +12,6 @@ namespace Rbac.Application
     {
         ResaultDto AddUserInfo(UserDto user);
         TokenDto Login(LoginDto user);
+        Tuple<List<UserShowDto>, int> UserPage(int pageindex = 1, int pagesize = 10);
     }
 }

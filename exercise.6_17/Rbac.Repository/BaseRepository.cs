@@ -121,9 +121,20 @@ namespace Rbac.Repository
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate)
+        public IQueryable<T> GetQueryableWhere(Expression<Func<T, bool>> predicate=null)
         {
             var list = DbContext.Set<T>().Where(predicate);
+            return list;
+        }
+
+        /// <summary>
+        /// 根据条件获取全部数据
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public IQueryable<T> GetQueryable()
+        {
+            var list = DbContext.Set<T>().AsQueryable();
             return list;
         }
 

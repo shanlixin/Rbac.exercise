@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Rbac.Application
 {
-    public interface IRoleService
+    public interface IRoleService: IBaseService<Role, Role>
     {
     }
 }

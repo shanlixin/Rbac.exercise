@@ -17,7 +17,8 @@ namespace Rbac.Repository
         T GetByWhere(Expression<Func<T, bool>> predicate);
         T GetByWhere(TKey key);
         List<T> GetByWhereAll(Expression<Func<T, bool>> predicate);
-        IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetQueryableWhere(Expression<Func<T, bool>> predicate);
+        IQueryable<T> GetQueryable();
         bool Upd(T t);
     }
 }

@@ -13,9 +13,7 @@ namespace Rbac.WebApi.Controllers
         public async Task<FileContentResult> CaptchaAsync([FromServices] ICodeService _captcha)
         {
             var code = await _captcha.GenerateRandomCaptchaAsync();
-            Response.Cookies.Append("one", code);
             var result = await _captcha.GenerateCaptchaImageAsync(code);
-
             return File(result.CaptchaMemoryStream.ToArray(), "image/png");
         }
 

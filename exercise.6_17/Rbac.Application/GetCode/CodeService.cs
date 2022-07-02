@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -11,6 +12,12 @@ namespace Rbac.Application
     public class CodeService : ICodeService
     {
         private const string Letters = "1,2,3,4,5,6,7,8,9,A,B,C,D,E,F,G,H,J,K,L,M,N,P,Q,R,S,T,U,V,W,X,Y,Z";
+        private readonly IHttpContextAccessor accessor;
+
+        public CodeService(IHttpContextAccessor accessor)
+        {
+            this.accessor = accessor;
+        }
 
         public Task<CaptchaResult> GenerateCaptchaImageAsync(string captchaCode, int width = 0, int height = 30)
         {
@@ -98,7 +105,10 @@ namespace Rbac.Application
 
                 captcheCode += array[index];
             }
-
+            var t= Task.FromResult(captcheCode);
+            CookieOptions options=new CookieOptions();
+            options.Expires = DateTime.Now.AddMinutes(10);
+            accessor.HttpContext.Response.Cookies.Append("Code", t.Result);
             return Task.FromResult(captcheCode);
         }
 

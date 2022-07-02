@@ -7,8 +7,9 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 
 const service = axios.create({
-  baseURL: "https://localhost:44341/api/"
+  baseURL: "http://localhost:28073/api/"
 })
+service.defaults.withCredentials = true;
 service.defaults.headers.common['Authorization'] = "bearer " + localStorage.getItem("token");
 Vue.prototype.$axios = service
 Vue.use(ElementUI);

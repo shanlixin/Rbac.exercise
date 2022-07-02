@@ -97,5 +97,17 @@ namespace Rbac.WebApi.Controllers
         {
             return Menu.GetMenuShow();
         }
+
+        /// <summary>
+        /// 添加菜单角色中间表信息
+        /// </summary>
+        /// <param name="menuRole"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowAnonymous]
+        public bool SaveMenuRole(MenuRoleDto menuRole)
+        {
+            return Menu.SaveMenuRole(menuRole);
+        }
     }
 }

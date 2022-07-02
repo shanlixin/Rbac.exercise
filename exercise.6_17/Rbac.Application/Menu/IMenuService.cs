@@ -11,5 +11,6 @@ namespace Rbac.Application
         bool Create(Menu menu);
         bool UpdMenu(Menu menu);
         List<MenuShowDto> GetMenuShow();
+        bool SaveMenuRole(MenuRoleDto menuRole);
     }
 }

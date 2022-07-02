@@ -18,9 +18,9 @@
           <el-input v-model="ruleForm.username"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input v-model="ruleForm.password"></el-input>
+          <el-input v-model="ruleForm.password" type="password"></el-input>
         </el-form-item>
-        <el-form-item label="验证码" prop="password">
+        <el-form-item label="验证码" prop="checkcode">
           <el-input
             v-model="ruleForm.checkcode"
             style="width: 140px"
@@ -74,6 +74,10 @@ export default {
         }
         if (d.data.msg == "密码输入有误") {
           this.$message.error("密码输入有误");
+          return;
+        }
+        if (d.data.msg == "验证码错误") {
+          this.$message.error("验证码错误");
           return;
         }
       });

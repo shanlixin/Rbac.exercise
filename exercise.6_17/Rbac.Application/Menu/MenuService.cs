@@ -10,10 +10,12 @@ namespace Rbac.Application
     public class MenuService : BaseService<Menu,MenuAddDto>,IMenuService
     {
         public IMenuRepository MenuRepository { get; }
+        public IMenuRoleRepository MenuRole { get; }
 
-        public MenuService(IMenuRepository menuRepository, IMapper mapper):base(menuRepository,mapper)
+        public MenuService(IMenuRepository menuRepository, IMapper mapper, IMenuRoleRepository menuRole) :base(menuRepository,mapper)
         {
             MenuRepository = menuRepository;
+            MenuRole = menuRole;
         }
 
         public List<MenuDto> GetMenuAll()
@@ -101,6 +103,12 @@ namespace Rbac.Application
         public List<MenuShowDto> GetMenuShow()
         {
             return Mapper.Map<List<MenuShowDto>>(MenuRepository.GetInfoAll());
+        }
+
+        public bool SaveMenuRole(MenuRoleDto menuRole)
+        {
+            var ids = menuRole.MenuId.Select(m => new MenuRole { MenuId = m, RoleId = menuRole.RoleId }).ToList();
+            return MenuRole.AddAll(ids);
         }
 
     }
