@@ -7,6 +7,11 @@
         width="80px"
       ></el-table-column>
       <el-table-column prop="userName" label="用户名" width="80px">
+        <template slot-scope="scope">
+          <span style="margin-left: 10px">{{
+            scope.row.userName | formname
+          }}</span>
+        </template>
       </el-table-column>
       <el-table-column prop="email" label="邮箱" width="130px">
       </el-table-column>
@@ -28,7 +33,7 @@
       </el-table-column>
       <el-table-column label="是否锁定" width="120px">
         <template slot-scope="scope">
-          <span v-if="scope.row.isLock == 0">是</span>
+          <span v-if="scope.row.isLock == 1">是</span>
           <span v-else>否</span>
         </template>
       </el-table-column>
@@ -42,6 +47,9 @@
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
             >编辑</el-button
+          >
+          <el-button size="mini" @click="getrole(scope.$index, scope.row)"
+            >分配角色</el-button
           >
           <el-button
             size="mini"
@@ -62,17 +70,29 @@
       :total="total"
     >
     </el-pagination>
+    <el-dialog title="分配角色" :visible.sync="userroletable" width="30%">
+      <Add :key="new Date().getTime()" ref="rolelist" />
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="createuserrole">确定</el-button>
+        <el-button @click="userroletable = false">取 消</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
+import Add from "@/views/AddUserRole.vue";
 export default {
+  components: {
+    Add,
+  },
   data() {
     return {
       tableData: [],
       index: 1,
       size: 2,
       total: 0,
+      userroletable: false,
     };
   },
   methods: {
@@ -101,6 +121,11 @@ export default {
       this.index = val;
       this.getUser();
     },
+    //分配角色
+    getrole(index, row) {
+      this.userroletable = true;
+    },
+    createuserrole() {},
   },
   created() {
     this.getUser();
@@ -108,6 +133,9 @@ export default {
   filters: {
     formdate(val) {
       return val.substr(0, 10) + " " + val.substr(11, 8);
+    },
+    formname(val) {
+      return val.toLocaleUpperCase();
     },
   },
 };

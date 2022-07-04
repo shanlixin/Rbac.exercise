@@ -35,7 +35,7 @@
       </el-table-column>
     </el-table>
     <el-dialog title="分配权限" :visible.sync="menuroletable" width="30%">
-      <Add :key="new Date().getTime()" ref="menutree" />
+      <Add :key="new Date().getTime()" ref="menutree" :editid="roleId" />
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="createmenurole">确定</el-button>
         <el-button @click="menuroletable = false">取 消</el-button>
@@ -65,7 +65,7 @@ export default {
       console.log(index, row);
     },
     getRole() {
-      this.$axios.get("Role").then((d) => {
+      this.$axios.get("Role/GetRoleAll").then((d) => {
         this.tableData = d.data;
       });
     },
@@ -79,15 +79,23 @@ export default {
         .getCheckedNodes(true, true)
         .map((m) => m.value);
       debugger;
+      this.delmenurole();
       this.$axios
         .post("Menu/SaveMenuRole", { menuId: menuId, roleId: this.roleId })
         .then((d) => {
           if (d.data) {
             this.$message.success("权限分配成功");
+            this.menuroletable = false;
           } else {
             this.$message.error("权限分配失败");
           }
         });
+    },
+    //删除权限
+    delmenurole() {
+      this.$axios
+        .delete("Role/DelMenuRole?roleid=" + this.roleId)
+        .then((d) => {});
     },
   },
   created() {

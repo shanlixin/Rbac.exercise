@@ -15,8 +15,4 @@
     <ProjectReference Include="..\Rbac.Repository\Rbac.Repository.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Role\DTO\" />
-  </ItemGroup>
-
 </Project>

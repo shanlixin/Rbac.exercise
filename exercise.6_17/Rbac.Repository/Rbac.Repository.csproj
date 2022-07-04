@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="RoleMenu\**" />
+    <EmbeddedResource Remove="RoleMenu\**" />
+    <None Remove="RoleMenu\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Rbac.Entity\Rbac.Entity.csproj" />
   </ItemGroup>
 

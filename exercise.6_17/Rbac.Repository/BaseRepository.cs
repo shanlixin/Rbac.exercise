@@ -58,7 +58,10 @@ namespace Rbac.Repository
         public bool DelAll(Expression<Func<T, bool>> predicate)
         {
             var list = DbContext.Set<T>().Where(predicate);
-            DbContext.Remove(list);
+            foreach (var item in list)
+            {
+                DbContext.Remove(item);
+            }         
             return DbContext.SaveChanges() > 0;
         }
 

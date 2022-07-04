@@ -10,5 +10,7 @@ namespace Rbac.Application
 {
     public interface IRoleService: IBaseService<Role, Role>
     {
+        List<RoleMenuDto> GetRoleMenuDto(int roleid);
+        bool DelMenuRole(int roleid);
     }
 }

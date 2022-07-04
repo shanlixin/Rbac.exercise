@@ -5,6 +5,7 @@
       show-checkbox
       node-key="value"
       :default-expanded-keys="[1, 2, 5]"
+      :default-checked-keys="tableData"
       :props="defaultProps"
       ref="choosemenu"
     >
@@ -14,6 +15,7 @@
 
 <script>
 export default {
+  props: ["editid"],
   data() {
     return {
       data: [],
@@ -22,6 +24,7 @@ export default {
         children: "children",
         label: "label",
       },
+      tableData: [],
     };
   },
   methods: {
@@ -37,9 +40,22 @@ export default {
         .map((m) => m.value);
       console.log(list);
     },
+    //反填权限
+    getback() {
+      this.$axios.get("Role/GetRoleMenuDto?roleid=" + this.editid).then((d) => {
+        this.tableData = d.data.map((m) => m.menuId);
+      });
+    },
   },
   created() {
     this.getlist();
+    this.getback();
+  },
+  watch: {
+    editid(val) {
+      this.getlist();
+      this.getback();
+    },
   },
 };
 </script>
