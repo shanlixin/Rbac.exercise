@@ -22,5 +22,11 @@ namespace Rbac.Application
         /// 创建时间
         /// </summary>
         public DateTime CreateTime { get; set; }
+
+        /// <summary>
+        /// 多个角色
+        /// </summary>
+        public int[] RoleId { get; set; }
+
     }
 }

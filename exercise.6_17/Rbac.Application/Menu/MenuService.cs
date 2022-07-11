@@ -111,5 +111,39 @@ namespace Rbac.Application
             return MenuRole.AddAll(ids);
         }
 
+
+
+        public List<MenuDto> Get()
+        {
+            var list = MenuRepository.GetInfoAll();
+            List<MenuDto> result = new List<MenuDto>();
+
+            var menulist = list.Where(m => m.ParentId == 0).Select(m=>new MenuDto
+            {
+                MenuName = m.MenuName,
+                MenuId = m.MenuId,
+                LinkUrl = m.LinkUrl,
+            }).ToList();
+
+            GetChlidren(menulist);
+            return menulist;
+        }
+
+        public void GetChlidren(List<MenuDto> menus)
+        {
+            var list = MenuRepository.GetInfoAll();
+            foreach (var item in menus)
+            {
+                var menulist = list.Where(m => m.ParentId == item.MenuId).Select(m => new MenuDto
+                {
+                    MenuName = m.MenuName,
+                    MenuId = m.MenuId,
+                    LinkUrl = m.LinkUrl,
+                }).ToList();
+                
+                item.Children.AddRange(menulist);
+                GetChlidren(menulist);
+            }
+        }
     }
 }

@@ -21,13 +21,15 @@ namespace Rbac.Application
         private readonly IMapper mapper;
         private readonly IConfiguration configuration;
         private readonly IHttpContextAccessor accessor;
+        private readonly IUserRoleRepository userRoleRepository;
 
-        public UserService(IUserRepository userRepository,IMapper mapper, IConfiguration configuration, IHttpContextAccessor accessor) : base(userRepository,mapper)
+        public UserService(IUserRepository userRepository,IMapper mapper, IConfiguration configuration, IHttpContextAccessor accessor, IUserRoleRepository userRoleRepository) : base(userRepository,mapper)
         {
             UserRepository = userRepository;
             this.mapper = mapper;
             this.configuration = configuration;
             this.accessor = accessor;
+            this.userRoleRepository = userRoleRepository;
         }
 
         public IUserRepository UserRepository { get; }
@@ -49,7 +51,18 @@ namespace Rbac.Application
                 user.CreateTime = DateTime.Now;
                 user.Password = Md5(user.Password.Trim());
                 user.UserName = user.UserName.Trim().ToUpper();
-                UserRepository.Add(mapper.Map<User>(user));
+
+                var entity = mapper.Map<User>(user);
+                UserRepository.Add(entity);
+
+                //用户角色中间表的添加
+                var list = user.RoleId.Select(m => new UserRole
+                {
+                    RoleId=m,
+                    UserId=entity.UserId,
+                }).ToList();
+                userRoleRepository.AddAll(list);
+
                 return new ResaultDto { Code = true, Msg = "用户添加成功" };
             }
         }

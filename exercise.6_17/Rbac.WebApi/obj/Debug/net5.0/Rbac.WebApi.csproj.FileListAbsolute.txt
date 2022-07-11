@@ -218,3 +218,5 @@ D:\专高六\传\exercise.6_17\Rbac.WebApi\bin\Debug\net5.0\runtimes\win\lib\net
 D:\专高六\传\exercise.6_17\Rbac.WebApi\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
 D:\专高六\传\exercise.6_17\Rbac.WebApi\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
 D:\专高六\传\exercise.6_17\Rbac.WebApi\obj\Debug\net5.0\Rbac.WebApi.MvcApplicationPartsAssemblyInfo.cs
+D:\专高六\传\exercise.6_17\Rbac.WebApi\bin\Debug\net5.0\Rbac.WebApi.xml
+D:\专高六\传\exercise.6_17\Rbac.WebApi\obj\Debug\net5.0\Rbac.WebApi.xml

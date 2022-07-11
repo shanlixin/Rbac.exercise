@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div style="float: left">
+      <el-button type="primary" @click="getrole">添加角色</el-button>
+    </div>
     <el-table :data="tableData" style="width: 100%">
       <el-table-column
         prop="userId"
@@ -48,9 +51,6 @@
           <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
             >编辑</el-button
           >
-          <el-button size="mini" @click="getrole(scope.$index, scope.row)"
-            >分配角色</el-button
-          >
           <el-button
             size="mini"
             type="danger"
@@ -70,12 +70,8 @@
       :total="total"
     >
     </el-pagination>
-    <el-dialog title="分配角色" :visible.sync="userroletable" width="30%">
+    <el-dialog title="添加用户" :visible.sync="userroletable" width="40%">
       <Add :key="new Date().getTime()" ref="rolelist" />
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="createuserrole">确定</el-button>
-        <el-button @click="userroletable = false">取 消</el-button>
-      </span>
     </el-dialog>
   </div>
 </template>
@@ -122,10 +118,9 @@ export default {
       this.getUser();
     },
     //分配角色
-    getrole(index, row) {
+    getrole() {
       this.userroletable = true;
     },
-    createuserrole() {},
   },
   created() {
     this.getUser();

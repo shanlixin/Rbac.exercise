@@ -21,6 +21,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Swashbuckle.AspNetCore.Filters;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace Rbac.WebApi
 {
@@ -88,7 +89,15 @@ namespace Rbac.WebApi
                     In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
                     Type = SecuritySchemeType.ApiKey
                 });
+
+                // 显示注释
+                #region
+                string path = Path.GetDirectoryName(typeof(Program).Assembly.Location);// 程序运行时的目录
+                string xmlpath = Path.Combine(path, "Rbac.WebApi.xml");
+                options.IncludeXmlComments(xmlpath);
+                #endregion
             });
+
 
             //上下文
             services.AddDbContext<MyDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("sqlserver")));
@@ -113,7 +122,7 @@ namespace Rbac.WebApi
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IMenuRoleRepository, MenuRoleRepository>();
-            
+            services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 
             services.AddHttpContextAccessor();
         }

@@ -31,5 +31,6 @@ namespace Rbac.Entity
         /// </summary>
         public byte IsLock { get; set; }
 
+
     }
 }
